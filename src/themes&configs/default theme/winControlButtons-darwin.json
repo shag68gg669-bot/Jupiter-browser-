@@ -1,0 +1,9 @@
+{
+    "left-side": {
+        "darwin-close": ["darwin-wincontrols", "wincontrols-close"],
+        "darwin-minimize": ["darwin-wincontrols", "wincontrols-minimize"],
+        "darwin-maximize": ["darwin-wincontrols", "wincontrols-maximize"]
+    },
+    "right-side": {
+    }
+}

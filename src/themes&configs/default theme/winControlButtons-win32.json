@@ -1,0 +1,8 @@
+{
+    "left-side": {},
+    "right-side": {
+        "win32-minimize": ["win32-wincontrols", "wincontrols-minimize"], 
+        "win32-maximize": ["win32-wincontrols", "wincontrols-maximize"],
+        "win32-close": ["win32-wincontrols", "wincontrols-close"]
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "left-side": {},
+    "right-side": {
+        "linux-minimize": ["linux-wincontrols", "wincontrols-minimize"],
+        "linux-maximize": ["linux-wincontrols", "wincontrols-maximize"],
+        "linux-close": ["linux-wincontrols", "wincontrols-close"]
+    }
+}

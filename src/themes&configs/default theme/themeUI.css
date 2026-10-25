@@ -1,0 +1,215 @@
+@keyframes flowDown {
+    from {
+        /* transform: translateY(-100%); */
+        /* display: none; */
+        height: 0;
+    }
+    to {
+        /* transform: translateY(0); */
+        /* display: flex; */
+        height: calc(100vh - 36px);
+        border: 1px solid rgba(255, 255, 255, 0.282);
+    }
+}
+
+@keyframes flowUp {
+    from {
+        /* transform: translateY(0); */
+        /* display: flex; */
+        height: calc(100vh - 36px);
+    }
+    to {
+        /* transform: translateY(-100%); */
+        /* display: none; */
+        height: 0;
+        border: none;
+    }
+}
+
+@keyframes squeezeTab {
+    from {
+        opacity: 1;
+        height: 36px;
+    }
+    to {
+        opacity: 0;
+        height: 0;
+    }
+}
+#top-bar {
+    background: linear-gradient(rgb(22, 22, 22), rgb(32, 32, 32));
+}
+
+.win32-wincontrols {
+    display: flex;
+    width: 40px;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0);
+    text-align: center;
+    justify-content: center;
+    border-radius: 3px;;
+}
+.win32-wincontrols:hover {
+    background-color: rgba(255, 255, 255, 0.423);
+}
+#win32-close:hover {
+    background-color: rgba(255, 0, 0, 0.424);
+}
+.linux-wincontrols {
+    display: flex;
+    width: 22px;
+    height: 22px;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 50%;
+    z-index: 100;
+    text-align: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-right: 4px;
+}
+
+.linux-wincontrols:hover {
+    background-color: rgba(255, 255, 255, 0.223);
+}
+
+.button-support {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.icon {
+    align-self: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: rgba(255, 255, 255, 0.656);
+}
+
+.UI-icon {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.656);
+}
+
+.url-bar-icon {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.UI-button {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0);
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 3px;
+    margin-left: 6px;
+    overflow : hidden;
+    opacity: 0.4;
+}
+.UI-button-active {
+    opacity: 1;
+}
+.top-bar-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.UI-button-active:hover {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+#main-tab {
+    border-radius: 1cm;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.429);
+    color: rgba(255, 255, 255, 0.656);
+}
+
+#flow-tab-menu {
+    background-color: rgba(2, 2, 2, 0.4);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.282);
+    backdrop-filter: blur(5px);
+}
+
+#flow-tab-menu.menu-active {
+    animation: flowDown 0.1s ease-out forwards;
+}
+
+#flow-tab-menu.menu-inactive {
+    animation: flowUp 0.1s ease-out forwards;
+}
+#top-of-flow-tab-menu {
+    height: 26px;
+}
+.element-of-flow-tab-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 36px;
+    background-color: rgba(0, 0, 0, 0.223);
+    border: 1px solid rgba(255, 255, 255, 0.223);
+    backdrop-filter: blur(100px);
+}
+
+#tab-space {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex : 1;
+    min-height: 0;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.active-tab {
+    border-radius: 0;
+    width: 100%;
+}
+
+#url-bar {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(255, 255, 255, 0.8);
+    border: 0;
+    outline: none;
+
+}
+
+.url-bar-related-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1cm;
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    margin: 4px;
+}
+
+.url-bar-related-button:hover {
+   opacity: 1;
+   cursor: pointer;
+}
+
+#copy-button {
+    padding-top: 4px;
+}
+
+#tab-count {
+    color: rgba(255, 255, 255, 0.729);
+}
