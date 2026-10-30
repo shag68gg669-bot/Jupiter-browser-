@@ -1,0 +1,52 @@
+.tab {
+    display: flex;
+    position: relative;
+    width: 90%;
+    height: 30px;
+    justify-self: center;
+    margin-top: 8px;
+    justify-content:space-between;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tab-main-content {
+    display: flex;
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+    flex: 1 1 0;
+    align-items: center;
+    padding-left: 6px;
+    padding-right: 6px;
+    text-overflow: ellipsis;
+}
+.tab-icon-space {
+    display: flex;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    overflow : hidden;
+    background-size: cover;
+}
+.tab-title-space {
+    display: flex;
+    width: auto;
+    height: 100%;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: 8px;
+    flex: 0 0 auto;
+}
+.tab-close-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 100%;
+    overflow : hidden;
+    flex: 0 0 auto;
+}

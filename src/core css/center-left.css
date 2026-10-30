@@ -1,0 +1,39 @@
+#tab-section {
+  display: flex;
+  overflow: visible;
+  height: 100%;
+  width: 15vw;
+  min-width: 122px;
+  max-width: 250px;
+  flex: 0 0 auto;
+  -webkit-app-region: no-drag;
+}
+#buttons-section {
+  display: flex;
+  height: 100%;
+  width : fit-content;
+  flex: 0 0 auto;
+  -webkit-app-region: no-drag;
+}
+
+#buttons-section button {
+  -webkit-app-region: no-drag;
+}
+
+#main-tab-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+#main-tab {    
+    display: flex;
+    overflow: hidden;
+    width: 90%;
+    max-width: 250px;
+    min-width: 120px;
+    align-items: center;
+    height: 80%;
+}

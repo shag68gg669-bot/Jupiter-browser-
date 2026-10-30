@@ -1,0 +1,10 @@
+
+#other-middle-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-width: 36px;
+    height: 100%;
+    -webkit-app-region: no-drag;
+}

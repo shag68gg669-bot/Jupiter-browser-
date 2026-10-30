@@ -1,0 +1,53 @@
+
+#flow-tab-menu {
+    width: 15vw;
+    max-width: 250px;
+    min-width: 120px;
+    height: calc(100vh - 36px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+    overflow-y: auto;
+    position: fixed;
+    left: 0;
+    top: 36px;
+    transform: translateY(0);
+    overflow: hidden;
+}
+
+
+#flow-tab-menu.menu-active {
+    animation: flowDown 0.1s ease-out forwards;
+}
+
+#flow-tab-menu.menu-inactive {
+    animation: flowUp 0.1s ease-out forwards;
+}
+
+#top-of-flow-tab-menu {
+    height: 26px;
+}
+
+.element-of-flow-tab-menu {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 36px;
+}
+
+#tab-space {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex : 1;
+    overflow: scroll;
+}
+
+#add-tab-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,38 @@
+@keyframes flowDown {
+    from {
+        /* transform: translateY(-100%); */
+        /* display: none; */
+        height: 0;
+    }
+    to {
+        /* transform: translateY(0); */
+        /* display: flex; */
+        height: calc(100vh - 36px);
+        border: 1px solid rgba(255, 255, 255, 0.282);
+    }
+}
+
+@keyframes flowUp {
+    from {
+        /* transform: translateY(0); */
+        /* display: flex; */
+        height: calc(100vh - 36px);
+    }
+    to {
+        /* transform: translateY(-100%); */
+        /* display: none; */
+        height: 0;
+        border: none;
+    }
+}
+
+@keyframes squeezeTab {
+    from {
+        opacity: 1;
+        height: 36px;
+    }
+    to {
+        opacity: 0;
+        height: 0;
+    }
+}

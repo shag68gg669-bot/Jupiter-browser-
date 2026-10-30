@@ -39,16 +39,28 @@ export function mainWebviewBehaviors() {
         updateTabContentInfo(Mainwebview.id.replace('webview-', ''));
         updateForwardBackRefreshButtons(document.getElementById('buttons-section'));
         updateMainTabAndUrlBar();
+
+        setInterval(updateTabContentInfo(Mainwebview.id.replace('webview-', '')), 2000);
+        setInterval(updateTabContentInfo('main-tab'), 2000);
     });
 
     Mainwebview.addEventListener('page-title-updated',  () => {
         updateTabContentInfo(Mainwebview.id.replace('webview-', ''));
         updateMainTabAndUrlBar();
+
+        //this is very unelequant and dumb but I don't know a better way of solving the glitches 
+        setTimeout(updateTabContentInfo('main-tab'), 100);
+        setTimeout(updateTabContentInfo(Mainwebview.id.replace('webview-', '')), 50);
     });
 
     Mainwebview.addEventListener('page-favicon-updated',  () => {
         updateTabContentInfo(Mainwebview.id.replace('webview-', ''));
         updateMainTabAndUrlBar();
+
+        //this is very unelequant and dumb but I don't know a better way of solving the glitches 
+        setTimeout(updateTabContentInfo('main-tab'), 50);
+        setTimeout(updateTabContentInfo(Mainwebview.id.replace('webview-', '')), 50);
     });
+    
 }
 

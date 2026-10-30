@@ -1,0 +1,38 @@
+#url-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: auto;
+    height: 60%;
+    -webkit-app-region: no-drag;
+    overflow: hidden;
+}
+
+.url-bar-related-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin: 4px;
+}
+
+#url-bar {
+  flex: 1;
+  width:auto;
+  height: 100%;
+}
+
+#url-related-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    width: fit-content;
+    min-width: 36px;
+    height: 100%;
+}
+
+#copy-button {
+    padding-top: 4px;
+}

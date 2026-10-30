@@ -101,6 +101,7 @@ function generateUIElements(elements) {
     otherMiddleButtonsContainer.id = 'other-middle-buttons-container';
     otherMiddleButtonsContainer.classList.add('top-bar-segment');
     middleItemsContainer.appendChild(otherMiddleButtonsContainer);
+
 }
 
 // generate or update back, forward, refresh and home buttons
