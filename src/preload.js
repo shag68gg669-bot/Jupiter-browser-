@@ -10,5 +10,4 @@ contextBridge.exposeInMainWorld('electronAPI', {
     onWindowUnmaximized: (callback) => ipcRenderer.on('window-unmaximized', callback),
     getFlowTabMenuState: () => ipcRenderer.invoke('get-flow-tab-menu-state'),
     onOpenPopupInTab: (callback) => ipcRenderer.on('open-popup-in-tab', (_event, url) => callback(url)),
-    
 });

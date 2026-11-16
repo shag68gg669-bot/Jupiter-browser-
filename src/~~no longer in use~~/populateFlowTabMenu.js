@@ -5,6 +5,7 @@ let draggedTabId = null
 
 import {tabManager} from './tabs.js'
 import { updateForwardBackRefreshButtons, updateMainTabAndUrlBar} from './generateUIElements.js'
+import {allWebviewBehaviors} from './webviewBehaviors.js'
 
 function activateFlowTabMenu() {
     const flowTabMenu = document.getElementById('flow-tab-menu');
@@ -79,18 +80,13 @@ export function updateTabContentInfo(tabId) {
         tabMainContent.appendChild(tabTitleSpace);
     }
 
-    // const iconUrl = webview.dataset.faviconUrl ||
-    //     new URL('./internal pages/icons/defaultIcon.png', import.meta.url).href;
-    // tabIconSpace.style.backgroundImage = `url("${iconUrl}")`;
-
     const titleText = webview.getTitle() || 'New Tab';
     tabTitleSpace.innerHTML = `<h >${titleText}</h>`;
 
     setTimeout(() => {
-        const iconUrl = webview.dataset.faviconUrl ||
-        new URL('/assets/defaultIcon.jpg.png', import.meta.url).href;
-        tabIconSpace.style.backgroundImage = `url("${iconUrl}")`;
-    }, 10);
+    const iconUrl = webview.dataset.faviconUrl || new URL('/assets/load.png', import.meta.url).href;
+    tabIconSpace.style.backgroundImage = `url("${iconUrl}")`;
+    }, 50);
 }
 
 function fillTabComponent(tabId) {
@@ -178,6 +174,7 @@ function addTab(url = new URL('./internal pages/home/home.html', import.meta.url
         updateTabContentInfo(tab.id);
         updateForwardBackRefreshButtons(document.getElementById('buttons-section'));
         updateMainTabAndUrlBar();
+        allWebviewBehaviors(webview.id);
     });
     updateTabCount();
 }
@@ -223,7 +220,6 @@ function tabDragLogic(tabId){
         const bounds = tab.getBoundingClientRect();
         const insertAfter = event.clientY >= bounds.top + bounds.height / 2;
         tabSpaceContent.insertBefore(draggedTab, insertAfter ? tab.nextSibling : tab);
-        tabManager.moveTab(draggedId, tab.id, insertAfter);
     });
     tab.addEventListener('dragend', () => {
         draggedTabId = null;
@@ -342,7 +338,7 @@ export function createAndPopulateFlowTabMenu() {
 
     addTab();
     addTabButton.addEventListener('click', () => {
-        addTab();
+        addTab('https://orteil.dashnet.org/cookieclicker/');
     });
 
     window.electronAPI.onOpenPopupInTab(openPopupInNewTab);

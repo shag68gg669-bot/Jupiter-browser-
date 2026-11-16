@@ -3,16 +3,13 @@
     width: 15vw;
     max-width: 250px;
     min-width: 120px;
-    height: calc(100vh - 36px);
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     z-index: 2;
     overflow-y: auto;
-    position: fixed;
     left: 0;
-    top: 36px;
-    transform: translateY(0);
     overflow: hidden;
 }
 
@@ -22,7 +19,7 @@
 }
 
 #flow-tab-menu.menu-inactive {
-    animation: flowUp 0.1s ease-out forwards;
+    animation: flowUp 0.2s ease-out forwards;
 }
 
 #top-of-flow-tab-menu {
@@ -50,4 +47,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#flow-tab-menu-webview-cover {
+    height: calc(100vh - 46px);
+    width: auto;
+    flex: 1;
+    align-self: center;
 }

@@ -1,13 +1,17 @@
-
 import './core css/index.css';
 import '/src/themes&configs/default theme/themeUI.css';
 import { generateWindowControls } from './generateWinControls';
-import { handleUIElements } from './generateUIElements';
-import { tabManager } from './tabs.js';
-
+// import { handleUIElements } from './generateUIElements';
+import {generateUIElements} from './layout/generateUI';
+import {createWebviews} from './webviews.js';
+import { checkForKeyPresses } from './checkForKeyPresses.js';
 
 window.addEventListener('DOMContentLoaded', () => {
 
     generateWindowControls();
-    handleUIElements();
+    // handleUIElements();
+    createWebviews();
+    checkForKeyPresses();
+    generateUIElements();
+
 });

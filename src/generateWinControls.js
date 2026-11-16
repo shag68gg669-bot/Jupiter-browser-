@@ -63,7 +63,7 @@ function updateMaximizeButton(isMaximized) {
             appBody.style.borderRadius = '0px';
         } else {
             button.innerHTML = "<b class='icon UI-icon'>&#10720;</b>";
-            appBody.style.borderRadius = '10px';
+            appBody.style.borderRadius = '4px';
         }
     }
 }

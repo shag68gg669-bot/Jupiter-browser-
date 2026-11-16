@@ -6,7 +6,7 @@ export function webviewBehaviors() {
 
     mainWebviewBehaviors();
 }
-  
+
 export function mainWebviewBehaviors() {
     const Mainwebview = tabManager.getTabWebview(tabManager.activeTabId);
     
@@ -22,6 +22,9 @@ export function mainWebviewBehaviors() {
 
     Mainwebview.addEventListener('dom-ready', () => {
         updateMainTabAndUrlBar();
+        setInterval(() => {
+            console.log(Mainwebview.getTitle());
+        }, 1000);
     });
     
     
@@ -38,29 +41,34 @@ export function mainWebviewBehaviors() {
     Mainwebview.addEventListener('did-finish-load', () => {
         updateTabContentInfo(Mainwebview.id.replace('webview-', ''));
         updateForwardBackRefreshButtons(document.getElementById('buttons-section'));
-        updateMainTabAndUrlBar();
+        setTimeout(updateTabContentInfo(Mainwebview.id.replace('webview-', '')), 1000);
+        setTimeout(updateTabContentInfo('main-tab'), 1000);
 
-        setInterval(updateTabContentInfo(Mainwebview.id.replace('webview-', '')), 2000);
-        setInterval(updateTabContentInfo('main-tab'), 2000);
     });
 
     Mainwebview.addEventListener('page-title-updated',  () => {
         updateTabContentInfo(Mainwebview.id.replace('webview-', ''));
-        updateMainTabAndUrlBar();
-
-        //this is very unelequant and dumb but I don't know a better way of solving the glitches 
-        setTimeout(updateTabContentInfo('main-tab'), 100);
-        setTimeout(updateTabContentInfo(Mainwebview.id.replace('webview-', '')), 50);
+        console.log(Mainwebview.getTitle());
+        updateTabContentInfo('main-tab');
     });
 
     Mainwebview.addEventListener('page-favicon-updated',  () => {
         updateTabContentInfo(Mainwebview.id.replace('webview-', ''));
-        updateMainTabAndUrlBar();
-
-        //this is very unelequant and dumb but I don't know a better way of solving the glitches 
-        setTimeout(updateTabContentInfo('main-tab'), 50);
-        setTimeout(updateTabContentInfo(Mainwebview.id.replace('webview-', '')), 50);
+        console.log('favicon updated for tab: ' + Mainwebview.id.replace('webview-', ''));
+        updateTabContentInfo('main-tab');
     });
-    
+}
+export function allWebviewBehaviors(webviewId) {
+
+    const webview = document.getElementById(webviewId);
+
+    webview.addEventListener('page-title-updated',  () => {
+        updateTabContentInfo(webview.id.replace('webview-', ''));
+
+    });
+
+    webview.addEventListener('page-favicon-updated',  () => {
+        updateTabContentInfo(webview.id.replace('webview-', ''));
+    });
 }
 

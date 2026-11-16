@@ -121,7 +121,6 @@ export function updateForwardBackRefreshButtons(buttonsSection) {
         backButton.id = 'back-button';
         backButton.innerHTML = '<b class="icon UI-icon">&#10229;</b>';
         backButton.classList.add('UI-button');
-        
         buttonsSection.appendChild(backButton);
     }
     else {

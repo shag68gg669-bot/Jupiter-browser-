@@ -172,10 +172,11 @@
 }
 
 #flow-tab-menu {
-    background-color: rgba(2, 2, 2, 0.4);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 0.282);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(3px);
+    box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.743);
 }
 
 .element-of-flow-tab-menu {
@@ -243,4 +244,49 @@
 
 #tab-count {
     color: rgba(255, 255, 255, 0.729);
+}
+
+@keyframes webviewCoverFadeIn {
+    from {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    to {
+        height: calc(100vh - 46px);
+        width: auto;
+        opacity: 0.2;
+    }
+}
+
+@keyframes webviewCoverFadeOut {
+    from {
+        height: calc(100vh - 46px);
+        width: auto;
+        opacity: 0.2;
+    }
+    to {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+
+#flow-tab-menu-webview-cover {
+    background-color: rgba(0, 128, 0, 1);
+    margin: 10px;
+    border-radius: 15px;
+    opacity: 0;
+    
+}
+
+#flow-tab-menu-webview-cover.fade-in {
+    animation: webviewCoverFadeIn 0.1s ease-out forwards;
+}
+#flow-tab-menu-webview-cover.fade-out {
+    animation: webviewCoverFadeOut 0.1s ease-out forwards;
+}
+
+#url-bar-container.url-bar-focus {
+    border: solid 3px rgb(104, 104, 254);
 }

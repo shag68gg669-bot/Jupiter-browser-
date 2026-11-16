@@ -1,8 +1,11 @@
+import { createWebview, removeWebview, setActiveWebview } from './webviews.js';
+
 class TabManager {
   constructor() {
     this.tabs = new Map();
     this.activeTabId = null;
     this.nextTabNumber = 1;
+    this.tabActivationList = [];
   }
 
   createTab({ title, url = 'about:blank' } = {}) {
@@ -14,10 +17,11 @@ class TabManager {
       title: title || `Tab ${this.tabs.size + 1}`,
       url,
       webviewId: `webview-${tabId}`,
+      tabActivationIndex: 0
     };
 
     this.tabs.set(tabId, tab);
-    this.createWebview(tab);
+    createWebview(tabId);
 
     if (this.activeTabId === null) {
       this.setActiveTab(tabId);
@@ -26,58 +30,43 @@ class TabManager {
     return tabId;
   }
 
-  createWebview(tab) {
-    const container = document.getElementById('webview-container');
-    if (!container) {
-      throw new Error('Missing #webview-container element');
-    }
-
-    const webview = document.createElement('webview');
-    webview.id = tab.webviewId;
-    webview.classList.add('webview');
-    webview.src = tab.url;
-    webview.allowpopups = true;
-    container.appendChild(webview);
-  }
 
   setActiveTab(tabId) {
-    document.querySelectorAll('.active-webview')?.forEach((el) => el.classList.remove('active-webview'));
-
-    document.getElementById(`webview-${tabId}`).classList.add('active-webview');
+    const tab = this.getTab(tabId);
+    if (!tab) {
+      console.error(`Tab ${tabId} not found`);
+      return;
+    }
 
     this.activeTabId = tabId;
-
-    document.querySelector('.active-tab')?.classList.add('selectable-tab');
-    document.querySelector('.active-tab')?.classList.remove('active-tab');
-    
-    const tab = document.getElementById(tabId);
-    tab.classList.add('active-tab');
-    tab.classList.remove('selectable-tab');
+    setActiveWebview(tabId);
+    for (const value of this.tabs.values()) {
+      value.tabActivationIndex += 1;
+    }
+    tab.tabActivationIndex = 0;
   }
 
   closeTab(tabId) {
     const tab = this.tabs.get(tabId);
-    document.getElementById(tab.webviewId)?.remove();
-    this.tabs.delete(tabId);
-
-    if (this.activeTabId === tabId) {
-      const nextTab = this.tabs.values().next().value;
-      this.activeTabId = null;
-      if (nextTab) this.setActiveTab(nextTab.id);
-    }
-  }
-
-  moveTab(tabId, targetTabId, insertAfter = false) {
-    if (!this.tabs.has(tabId) || !this.tabs.has(targetTabId) || tabId === targetTabId) {
+    if (!tab) {
       return;
     }
 
-    const tabs = [...this.tabs.entries()];
-    const [movedTab] = tabs.splice(tabs.findIndex(([id]) => id === tabId), 1);
-    const targetIndex = tabs.findIndex(([id]) => id === targetTabId);
-    tabs.splice(targetIndex + Number(insertAfter), 0, movedTab);
+    if (this.tabs.size === 1) {
+      console.warn('Cannot close the last tab');
+      return;
+    }
 
-    this.tabs = new Map(tabs);
+    removeWebview(this.getTabWebview(tabId));
+    this.tabs.delete(tabId);
+    this.tabActivationList = this.tabActivationList.filter((id) => id !== tabId);
+
+    if (this.activeTabId === tabId) {
+      const nextTabId = this.getSmallestActivationIndex();
+      if (nextTabId) {
+        this.setActiveTab(nextTabId);
+      }
+    }
   }
 
   getTab(tabId) {
@@ -86,7 +75,19 @@ class TabManager {
 
   getTabWebview(tabId) {
     const tab = this.getTab(tabId);
-    return document.getElementById(tab.webviewId);
+    return tab ? document.getElementById(tab.webviewId) : null;
+  }
+
+  getSmallestActivationIndex() {
+    let minTabId = null;
+
+    for (const [tabId, tab] of this.tabs) {
+      if (minTabId === null || tab.tabActivationIndex < this.tabs.get(minTabId).tabActivationIndex) {
+        minTabId = tabId;
+      }
+    }
+
+    return minTabId;
   }
 
   getAllTabs() {
@@ -99,5 +100,4 @@ class TabManager {
 }
 
 const tabManager = new TabManager();
-
 export { TabManager, tabManager };

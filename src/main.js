@@ -3,6 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import started from 'electron-squirrel-startup';
 
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -31,12 +33,7 @@ const createWindow = () => {
     },
   });
 
-  mainWindow.webContents.on('did-attach-webview', (event, webContents) => {
-    webContents.setWindowOpenHandler(({ url }) => {
-      mainWindow.webContents.send('open-popup-in-tab', url);
-      return { action: 'deny' };
-    });
-  });
+  handlePopups()
 
   // and load the index.html of the app.
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
@@ -122,3 +119,12 @@ ipcMain.handle('toggle-flow-tab-menu', (event) => {
   }
   return flowTabMenuState;
 });
+
+function handlePopups () {
+  mainWindow.webContents.on('did-attach-webview', (event, webContents) => {
+    webContents.setWindowOpenHandler(({ url }) => {
+      mainWindow.webContents.send('open-popup-in-tab', url);
+      return { action: 'deny' };
+    });
+  });
+}

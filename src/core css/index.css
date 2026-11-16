@@ -16,7 +16,7 @@ body, #app {
   padding: 0;
   font: bold 14px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
-  border-radius: 5px;
+  border-radius: 4px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
